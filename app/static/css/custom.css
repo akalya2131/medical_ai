@@ -1,0 +1,247 @@
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.animated-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.35), transparent 28%),
+        radial-gradient(circle at 80% 0%, rgba(37, 99, 235, 0.26), transparent 35%),
+        linear-gradient(145deg, #020617 0%, #082f49 34%, #0f172a 70%, #172554 100%);
+    animation: drift 18s ease-in-out infinite alternate;
+}
+
+.glass-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.page-shell {
+    animation: riseIn 0.7s ease-out both;
+}
+
+.nav-pill,
+.filter-pill,
+.secondary-button {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.nav-pill,
+.filter-pill {
+    border-radius: 999px;
+    padding: 0.7rem 1rem;
+    color: #dbeafe;
+}
+
+.nav-pill:hover,
+.filter-pill:hover,
+.secondary-button:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.nav-pill-active,
+.filter-pill-active {
+    background: rgba(56, 189, 248, 0.18);
+    border-color: rgba(125, 211, 252, 0.32);
+    color: #fff;
+}
+
+.primary-button,
+.secondary-button {
+    border-radius: 999px;
+    padding: 0.95rem 1.35rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.primary-button {
+    background: linear-gradient(135deg, #67e8f9 0%, #38bdf8 35%, #2563eb 100%);
+    color: #04111f;
+    box-shadow: 0 20px 45px rgba(56, 189, 248, 0.24);
+    transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 25px 55px rgba(56, 189, 248, 0.32);
+}
+
+.input-field {
+    width: 100%;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(15, 23, 42, 0.5);
+    padding: 0.95rem 1rem;
+    color: #fff;
+    outline: none;
+    transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.input-field::placeholder {
+    color: #94a3b8;
+}
+
+.input-field:focus {
+    border-color: rgba(103, 232, 249, 0.4);
+    background: rgba(15, 23, 42, 0.72);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
+.feature-tile,
+.info-card,
+.metric-card,
+.patient-row,
+.patient-card-mobile {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 1.75rem;
+}
+
+.feature-tile,
+.info-card,
+.metric-card,
+.patient-card-mobile {
+    padding: 1.25rem;
+}
+
+.feature-kicker,
+.metric-label {
+    display: inline-flex;
+    color: #bae6fd;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.feature-copy,
+.metric-copy {
+    margin-top: 0.7rem;
+    color: #cbd5e1;
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.metric-card {
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.metric-link {
+    display: block;
+}
+
+.metric-value {
+    display: block;
+    margin-top: 0.75rem;
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.risk-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.risk-pill-high {
+    background: rgba(56, 189, 248, 0.18);
+    color: #e0f2fe;
+    border: 1px solid rgba(125, 211, 252, 0.35);
+}
+
+.risk-pill-low {
+    background: rgba(147, 197, 253, 0.14);
+    color: #dbeafe;
+    border: 1px solid rgba(147, 197, 253, 0.24);
+}
+
+.patient-row,
+.patient-card-mobile {
+    display: block;
+    padding: 1.25rem;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.patient-row:hover,
+.patient-card-mobile:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.chart-wrap {
+    position: relative;
+    height: 290px;
+}
+
+.flash-success {
+    border-color: rgba(56, 189, 248, 0.25);
+}
+
+.flash-error {
+    border-color: rgba(248, 113, 113, 0.35);
+}
+
+.flash-hide {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.loader-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 999px;
+    border: 4px solid rgba(255, 255, 255, 0.12);
+    border-top-color: #67e8f9;
+    animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes drift {
+    0% {
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: scale(1.08) translate3d(-2%, 1%, 0);
+    }
+}
+
+@media (max-width: 640px) {
+    .chart-wrap {
+        height: 250px;
+    }
+}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Register | AI Patient Risk Predictor{% endblock %}
+
+{% block content %}
+<section class="mx-auto flex min-h-[70vh] max-w-5xl items-center">
+    <div class="grid w-full gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+        <div class="glass-card rounded-[32px] border border-white/10 p-8 shadow-glow sm:p-10">
+            <div class="mb-8">
+                <p class="text-sm uppercase tracking-[0.25em] text-slate-300">Create account</p>
+                <h1 class="mt-2 text-3xl font-semibold text-white">Set up your workspace</h1>
+                <p class="mt-3 text-sm text-slate-300">Start storing patient records, generating AI-driven risk predictions, and reviewing dashboard analytics.</p>
+            </div>
+
+            <form method="post" class="space-y-5" data-validate>
+                <div>
+                    <label for="email" class="mb-2 block text-sm font-medium text-slate-200">Email</label>
+                    <input id="email" name="email" type="email" required class="input-field" placeholder="doctor@clinic.com">
+                </div>
+                <div>
+                    <label for="password" class="mb-2 block text-sm font-medium text-slate-200">Password</label>
+                    <input id="password" name="password" type="password" minlength="8" required class="input-field" placeholder="Create a strong password">
+                </div>
+                <div>
+                    <label for="confirm_password" class="mb-2 block text-sm font-medium text-slate-200">Confirm password</label>
+                    <input id="confirm_password" name="confirm_password" type="password" minlength="8" required class="input-field" placeholder="Repeat your password">
+                </div>
+                <button type="submit" class="primary-button w-full">Create Account</button>
+            </form>
+
+            <p class="mt-6 text-center text-sm text-slate-300">
+                Already have an account?
+                <a href="{{ url_for('auth.login') }}" class="font-medium text-cyan-200 transition hover:text-white">Sign in</a>
+            </p>
+        </div>
+
+        <div class="glass-card flex flex-col justify-between rounded-[32px] border border-white/10 p-8 shadow-glow sm:p-10">
+            <div>
+                <span class="inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.24em] text-slate-100">
+                    Clinical Analytics
+                </span>
+                <h2 class="mt-6 text-4xl font-semibold leading-tight text-white">Designed like a premium healthcare SaaS product.</h2>
+                <p class="mt-5 text-sm leading-7 text-slate-300 sm:text-base">
+                    A polished mobile-first interface, secure session-based access, and a clean prediction workflow keep the experience practical without looking like a classroom demo.
+                </p>
+            </div>
+            <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                <div class="feature-tile">
+                    <span class="feature-kicker">Security</span>
+                    <p class="feature-copy">Hashed passwords, user-scoped records, and protected routes.</p>
+                </div>
+                <div class="feature-tile">
+                    <span class="feature-kicker">Insight</span>
+                    <p class="feature-copy">Chart-driven summaries with high/low risk drill-downs.</p>
+                </div>
+                <div class="feature-tile sm:col-span-2">
+                    <span class="feature-kicker">Guidance</span>
+                    <p class="feature-copy">Every result includes explanation, disease framing, and preventive recommendations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

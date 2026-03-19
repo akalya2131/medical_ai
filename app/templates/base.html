@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI Patient Risk Predictor{% endblock %}</title>
+    <meta name="description" content="AI Patient Risk Predictor delivers cardiometabolic risk screening with modern analytics and patient tracking.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#dff4ff',
+                            200: '#b8e8ff',
+                            300: '#7fd6ff',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#0f3b74',
+                            900: '#081a38',
+                        },
+                    },
+                    boxShadow: {
+                        glow: '0 25px 80px rgba(14, 165, 233, 0.22)',
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-slate-950 text-white">
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 animated-gradient"></div>
+        <div class="absolute left-[-10%] top-[-5%] h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] h-96 w-96 rounded-full bg-blue-600/20 blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.14),_transparent_35%)]"></div>
+    </div>
+
+    <div id="loadingOverlay" class="pointer-events-none fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/65 backdrop-blur-sm">
+        <div class="glass-card flex flex-col items-center gap-4 rounded-3xl px-8 py-7 text-center shadow-glow">
+            <div class="loader-ring"></div>
+            <div>
+                <p class="text-lg font-semibold text-white">Generating AI risk prediction</p>
+                <p class="text-sm text-slate-300">Analyzing age, BMI, and smoking profile.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-8">
+        <header class="mb-6">
+            <div class="glass-card flex flex-col gap-4 rounded-[28px] border border-white/15 px-5 py-4 shadow-glow sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-xl shadow-lg shadow-cyan-500/20 ring-1 ring-white/20">
+                        AI
+                    </div>
+                    <div>
+                        <a href="{{ url_for('main.dashboard') if g.user else url_for('auth.login') }}" class="text-lg font-semibold text-white sm:text-xl">AI Patient Risk Predictor</a>
+                        <p class="text-xs text-slate-300 sm:text-sm">Cardiometabolic screening with premium analytics</p>
+                    </div>
+                </div>
+
+                {% if g.user %}
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <nav class="flex flex-wrap items-center gap-2 text-sm">
+                            <a href="{{ url_for('main.dashboard') }}" class="nav-pill {% if request.endpoint == 'main.dashboard' %}nav-pill-active{% endif %}">Dashboard</a>
+                            <a href="{{ url_for('main.predict') }}" class="nav-pill {% if request.endpoint == 'main.predict' %}nav-pill-active{% endif %}">New Prediction</a>
+                            <a href="{{ url_for('main.patients') }}" class="nav-pill {% if request.endpoint == 'main.patients' %}nav-pill-active{% endif %}">Patients</a>
+                        </nav>
+                        <div class="flex items-center gap-2">
+                            <span class="hidden rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300 md:inline-flex">{{ g.user.email }}</span>
+                            <form action="{{ url_for('auth.logout') }}" method="post">
+                                <button type="submit" class="rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20">
+                                    Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flashContainer" class="mb-6 space-y-3">
+                    {% for category, message in messages %}
+                        <div class="flash-item glass-card rounded-2xl border border-white/10 px-4 py-3 text-sm shadow-lg {% if category == 'error' %}flash-error{% else %}flash-success{% endif %}">
+                            <div class="flex items-start justify-between gap-3">
+                                <p>{{ message }}</p>
+                                <button type="button" class="flash-close rounded-full bg-white/10 px-2 py-1 text-xs text-slate-100 transition hover:bg-white/20">Close</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <main class="page-shell flex-1">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
